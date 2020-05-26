@@ -1,5 +1,5 @@
 import React from 'react';
-import BookTitle from "./BookTitle"
+import BookTree from "./BookTitle"
 
 export default class Tree extends React.Component {
 
@@ -15,7 +15,7 @@ export default class Tree extends React.Component {
             <div className="tree" onDragOver={this.dragOver} onDrop={this.props.dropRootBook}>
                 <div>ROOT</div>
                 {this.props.rootBooks.map((book) => {
-                    return (<BookTitle key={book.title} book={book} />)
+                    return (<BookTree key={book.title} book={book} />)
 
                 })
                 }
