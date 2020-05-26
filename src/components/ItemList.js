@@ -9,7 +9,7 @@ export default class ItemList extends React.Component {
         return (
             <div className="itemList" >
                 {this.props.books.map((book) => {
-                    return (<BookTitle key={book.title} title={book.title}/>)
+                    return (<BookTitle key={book.title} book={book}/>)
 
                 })
                 }

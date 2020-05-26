@@ -4,8 +4,8 @@ export default class BookTitle extends React.Component{
 
     startDrag = (event) => {
 
-        const title = JSON.stringify(this.props.title);
-        event.dataTransfer.setData("drag-item", title);
+        const book = JSON.stringify(this.props.book);
+        event.dataTransfer.setData("drag-item", book);
 
     }
 
@@ -14,7 +14,7 @@ export default class BookTitle extends React.Component{
 
         return(
 
-            <div draggable onDragStart={this.startDrag}> {this.props.title}</div>
+            <div draggable onDragStart={this.startDrag}>{this.props.book.title}</div>
         )
     }
 }

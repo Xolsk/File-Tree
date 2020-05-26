@@ -5,7 +5,7 @@ import './App.css';
 
 export default class App extends React.Component {
 
-  state = { books: []};
+  state = { books: [], root:[]};
 
   componentDidMount() {
 
@@ -24,9 +24,19 @@ export default class App extends React.Component {
 
   }
 
-  dropBook = (event)=>{
-    const book = event.dataTransfer.getData("drag-item");
-    console.log(book)
+  dropRootBook = (event)=>{
+    const selectedBookJSON = event.dataTransfer.getData("drag-item");
+   const selectedBook= JSON.parse(selectedBookJSON);
+    const rootItems= this.state.root;
+
+    rootItems.push(selectedBook);
+
+    const books=this.state.books;
+    const indexToRemove = books.findIndex(book=>book.title===selectedBook.title);
+    books.splice(indexToRemove,1);
+
+    this.setState({root:rootItems, books:books});
+    
   }
 
   
@@ -35,7 +45,7 @@ export default class App extends React.Component {
   return (
     <div className="App">
       <ItemList  books={this.state.books}/>
-      <Tree dropBook={this.dropBook}/>
+      <Tree rootBooks={this.state.root} dropRootBook={this.dropRootBook}/>
     </div>
   );
 }
