@@ -1,6 +1,8 @@
 import React from "react";
 
-export default class BookTree extends React.Component{
+export default class BookTree extends React.Component {
+
+    state={children:[]}
 
     startDrag = (event) => {
 
@@ -9,12 +11,27 @@ export default class BookTree extends React.Component{
 
     }
 
+    dragOver = (event) => {
+        event.preventDefault();
+    }
 
-    render(){
+    dropInside = (event) => {
+        const selectedBookJSON = event.dataTransfer.getData("drag-item");
+        const selectedBook= JSON.parse(selectedBookJSON);
+        const currentChildren = this.state.children;
+        currentChildren.push(selectedBook);
+        this.setState({children:currentChildren});
+        this.props.removeFromList(selectedBook);
+    
+    }
 
-        return(
+    render() {
 
-            <div draggable onDragStart={this.startDrag}>{this.props.book.title}</div>
+        return (
+
+            <div onDragOver={this.dragOver} onDrop={this.dropInside} draggable onDragStart={this.startDrag}>
+                {this.props.book.title}
+            </div>
         )
     }
 }

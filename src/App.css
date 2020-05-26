@@ -14,6 +14,7 @@
 display:flex;
 width:50%;
 flex-direction:column;
+height:80vh;
   border:1px solid black;
   margin:1em;
 }
@@ -21,6 +22,7 @@ flex-direction:column;
 .tree{
 width:50%;
   display:flex;
+  height:80vh;
 flex-direction:column;
   border:1px solid black;
   margin:1em;

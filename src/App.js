@@ -26,17 +26,14 @@ export default class App extends React.Component {
 
   dropRootBook = (event)=>{
     const selectedBookJSON = event.dataTransfer.getData("drag-item");
-   const selectedBook= JSON.parse(selectedBookJSON);
+    const selectedBook= JSON.parse(selectedBookJSON);
     const rootItems= this.state.root;
 
     rootItems.push(selectedBook);
+    this.setState({root:rootItems});
 
-    const books=this.state.books;
-    const indexToRemove = books.findIndex(book=>book.title===selectedBook.title);
-    books.splice(indexToRemove,1);
-
-    this.setState({root:rootItems, books:books});
-    
+    this.removeFromList(selectedBook);
+ 
   }
 
   dropBack=(event )=>{
@@ -55,11 +52,18 @@ export default class App extends React.Component {
     this.setState({root:rootItems, books:books});
   }
 
+  removeFromList=(selectedBook)=>{
+    const books=this.state.books;
+    const indexToRemove = books.findIndex(book=>book.title===selectedBook.title);
+    books.splice(indexToRemove,1);
+    this.setState({books:books});
+  };
+
   render(){
   return (
     <div className="App">
       <ItemList  books={this.state.books} dropBack={this.dropBack}/>
-      <Tree rootBooks={this.state.root} dropRootBook={this.dropRootBook}/>
+      <Tree removeFromList={this.removeFromList} rootBooks={this.state.root} dropRootBook={this.dropRootBook}/>
     </div>
   );
 }
