@@ -12,8 +12,8 @@ export default class Tree extends React.Component {
     render() {
 
         return (
-            <div className="tree" >
-                <div onDragOver={this.dragOver} onDrop={this.props.dropRootBook}>ROOT</div>
+            <div className="tree" onDragOver={this.dragOver} onDrop={this.props.dropRootBook}>
+                <div >ROOT</div>
                 {this.props.rootBooks.map((book) => {
                     return (<BookTree removeFromList={this.props.removeFromList} key={book.title} book={book} />)
 
