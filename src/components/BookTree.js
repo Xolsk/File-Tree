@@ -16,6 +16,9 @@ export default class BookTree extends React.Component {
     }
 
     dropInside = (event) => {
+
+        event.stopPropagation();
+        console.log(this.state.children)
         const selectedBookJSON = event.dataTransfer.getData("drag-item");
         const selectedBook= JSON.parse(selectedBookJSON);
         const currentChildren = this.state.children;
@@ -31,6 +34,13 @@ export default class BookTree extends React.Component {
 
             <div onDragOver={this.dragOver} onDrop={this.dropInside} draggable onDragStart={this.startDrag}>
                 {this.props.book.title}
+                <div>
+                   { this.state.children.map((book)=>{
+                       return(
+                            <BookTree removeFromList={this.props.removeFromList} key={book.title} book={book}/>
+                       )
+                   })}
+                </div>
             </div>
         )
     }
