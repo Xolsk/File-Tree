@@ -26,29 +26,47 @@ export default class App extends React.Component {
 
   setData = (parent,child)=>{
 
-    
     const books=this.state.books;
 
     if (parent!=="ROOT"){
       const locatedParent= books.find(book=>book.title===parent.title);
       locatedParent.children.push(child);
+     
     }
     const locatedChild= books.find(book=>book.title===child.title);
     locatedChild.parent=parent;
     locatedChild.inList="false";
 
     this.setState({books:books});
-    console.log(this.state.books);
+ 
+  }
 
-    
+  setBack=(dragged)=>{
 
+    const books = this.state.books;
+    const locatedBook = books.find(book=>book.title===dragged.title);
+    locatedBook.inList="true";
+
+    locatedBook.children.forEach(child => {
+        let locatedChild= books.find(book=>book.title===child.title);
+        locatedChild.inList="true";
+        locatedChild.parent=undefined;
+    });
+
+    locatedBook.children=[];
+    locatedBook.parent=undefined;
+
+  //  const locatedParent = books.find(book=>book.title===dragged.parent.title);
+  //  locatedParent.children=[];
     
+    this.setState({books:books});
     
   }
+
   render(){
   return (
     <div className="App">
-      <ItemList  booksInList={this.state.books} />
+      <ItemList  setBack={this.setBack} booksInList={this.state.books} />
       <Tree  setData={this.setData} booksInTree={this.state.books}  />
     </div>
   );

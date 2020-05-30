@@ -1,6 +1,6 @@
 import React from "react";
 
-export default class BookTitle extends React.Component{
+export default class BookInTitle extends React.Component{
 
     startDrag = (event) => {
 

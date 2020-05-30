@@ -26,9 +26,9 @@ export default class Tree extends React.Component {
                 <div>ROOT</div>
                 {this.props.booksInTree.map((book) => {
 
-                    if (book.inList === "false" && book.parent=="ROOT") {
+                    if (book.inList === "false" && book.parent==="ROOT") {
 
-                        return (<BookInTree key={book.id} book={book} setData={this.props.setData} />)
+                        return (<BookInTree   key={book.id} book={book} setData={this.props.setData} />)
 
                     }
                 })

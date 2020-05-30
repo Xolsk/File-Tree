@@ -10,9 +10,16 @@ export default class ItemList extends React.Component {
         
     }
 
+    dropBack=(event)=>{
+
+        const draggedBook = JSON.parse(event.dataTransfer.getData("drag-item"));
+        this.props.setBack(draggedBook);
+
+    }
+
     render() {
         return (
-            <div onDragOver={this.dragOver}  className="itemList" >
+            <div onDragOver={this.dragOver} onDrop={this.dropBack}  className="itemList" >
                 
                 {this.props.booksInList.map((book) => {
        
