@@ -6,6 +6,7 @@ export default class BookTitle extends React.Component{
 
         const book = JSON.stringify(this.props.book);
         event.dataTransfer.setData("drag-item", book);
+  
 
     }
 

@@ -1,62 +1,93 @@
  [
+    
         {
             "id":"1",
             "title": "The High Rise",
             "author": "C.J. Ballard",
-            "rating":"0"
+            "rating":"0",
+            "children":[],
+            "parent":"undefined",
+            "inList":"true"
         },
         {
             "id":"2",
             "title": "Dune",
             "author": "Frank Herbert",
-            "rating":"0"
+            "rating":"0",
+            "children":[],
+            "parent":"undefined",
+            "inList":"true"
         },
         {
             "id":"3",
             "title": "Flow My Tears The Policeman Said",
             "author": "Phillip K. Dick",
-            "rating":"0"
+            "rating":"0",
+            "children":[],
+            "parent":"undefined",
+            "inList":"true"
         },
         {
             "id":"4",
             "title": "The Color Of Magic",
             "author": "Terry Pratchett",
-            "rating":"0"
+            "rating":"0",
+            "children":[],
+            "parent":"undefined",
+            "inList":"true"
         },
         {
             "id":"5",
             "title": "Eeeee Eee Eeee",
             "author": "Lin Tao",
-            "rating":"0"
+            "rating":"0",
+            "children":[],
+            "parent":"undefined",
+            "inList":"true"
         },
         {
             "id":"6",
             "title": "The Chronicles of Amber",
             "author": "Roger Zelazny",
-            "rating":"0"
+            "rating":"0",
+            "children":[],
+            "parent":"undefined",
+            "inList":"true"
         },
         {
             "id":"7",
             "title": "Naked Lunch",
             "author": "William Burroughs",
-            "rating":"0"
+            "rating":"0",
+            "children":[],
+            "parent":"undefined",
+            "inList":"true"
         },
         {
             "id":"8",
             "title": "SlaughterHouse Five",
             "author": "Kurt Vonnegut",
-            "rating":"0"
+            "rating":"0",
+            "children":[],
+            "parent":"undefined",
+            "inList":"true"
         },
         {
             "id":"9",
             "title": "Perdido Street Station",
             "author": "China Mieville",
-            "rating":"0"
+            "rating":"0",
+            "children":[],
+            "parent":"undefined",
+            "inList":"true"
         },
         {
             "id":"10",
             "title": "A Scanner Darkly",
             "author": "Phillip K. Dick",
-            "rating":"0"
+            "rating":"0",
+            "children":[],
+            "parent":"undefined",
+            "inList":"true"
         }
     ]

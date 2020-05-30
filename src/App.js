@@ -5,7 +5,7 @@ import './App.css';
 
 export default class App extends React.Component {
 
-  state = { books: [], root:[]};
+  state = { books:[]};
 
   componentDidMount() {
 
@@ -17,53 +17,39 @@ export default class App extends React.Component {
     fetch('bookData.json')
       .then(res => res.json())
       .then(data => {
-        
-        this.setState({ books: data });
+        let books = data;
+        this.setState({ books: books});
       })
       .catch(err => console.error(err));
 
   }
 
-  dropRootBook = (event)=>{
-    const selectedBookJSON = event.dataTransfer.getData("drag-item");
-    const selectedBook= JSON.parse(selectedBookJSON);
-    const rootItems= this.state.root;
+  setData = (parent,child)=>{
 
-    rootItems.push(selectedBook);
-    this.setState({root:rootItems});
-
-    this.removeFromList(selectedBook);
- 
-  }
-
-  dropBack=(event )=>{
-
-    const selectedBookJSON = event.dataTransfer.getData("drag-item");
-    const selectedBook= JSON.parse(selectedBookJSON);
-
-    const rootItems= this.state.root;
-    const indexToRemove = rootItems.findIndex(book=>book.title===selectedBook.title);
-    rootItems.splice(indexToRemove,1);
-
+    
     const books=this.state.books;
-    books.push(selectedBook);
 
+    if (parent!=="ROOT"){
+      const locatedParent= books.find(book=>book.title===parent.title);
+      locatedParent.children.push(child);
+    }
+    const locatedChild= books.find(book=>book.title===child.title);
+    locatedChild.parent=parent;
+    locatedChild.inList="false";
 
-    this.setState({root:rootItems, books:books});
-  }
-
-  removeFromList=(selectedBook)=>{
-    const books=this.state.books;
-    const indexToRemove = books.findIndex(book=>book.title===selectedBook.title);
-    books.splice(indexToRemove,1);
     this.setState({books:books});
-  };
+    console.log(this.state.books);
 
+    
+
+    
+    
+  }
   render(){
   return (
     <div className="App">
-      <ItemList  books={this.state.books} dropBack={this.dropBack}/>
-      <Tree removeFromList={this.removeFromList} rootBooks={this.state.root} dropRootBook={this.dropRootBook}/>
+      <ItemList  booksInList={this.state.books} />
+      <Tree  setData={this.setData} booksInTree={this.state.books}  />
     </div>
   );
 }
