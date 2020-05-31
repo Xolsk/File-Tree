@@ -2,7 +2,7 @@ import React from "react";
 
 export default class BookInTree extends React.Component {
 
-    state = { children: [] , depth: this.props.depth || 10,draggable: undefined }
+    state = { parent: this.props.book.parent, children: [] , depth: this.props.depth || 10,draggable: undefined }
 
     componentDidMount() {
 
@@ -18,6 +18,8 @@ export default class BookInTree extends React.Component {
         event.stopPropagation();
         const book = JSON.stringify(this.props.book);
         event.dataTransfer.setData("drag-item", book);
+        
+
        
     }
 
@@ -29,9 +31,10 @@ export default class BookInTree extends React.Component {
 
 
         event.stopPropagation();
+        
         const draggedBook = JSON.parse(event.dataTransfer.getData("drag-item"));
         let children=this.state.children;
-       children.push(draggedBook);
+        children.push(draggedBook);
       
         this.props.setData(this.props.book, draggedBook);
         

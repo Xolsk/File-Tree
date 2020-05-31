@@ -27,14 +27,18 @@ export default class App extends React.Component {
   setData = (parent,child)=>{
 
     const books=this.state.books;
+    let locatedParent=undefined;
+    let locatedChild= books.find(book=>book.title===child.title);
 
     if (parent!=="ROOT"){
-      const locatedParent= books.find(book=>book.title===parent.title);
+       locatedParent= books.find(book=>book.title===parent.title);
+      
       locatedParent.children.push(child);
-     
-    }
-    const locatedChild= books.find(book=>book.title===child.title);
-    locatedChild.parent=parent;
+      locatedChild.parent=locatedParent;
+  
+    } else locatedChild.parent="ROOT";
+    
+    
     locatedChild.inList="false";
 
     this.setState({books:books});
@@ -55,9 +59,6 @@ export default class App extends React.Component {
 
     locatedBook.children=[];
     locatedBook.parent=undefined;
-
-  //  const locatedParent = books.find(book=>book.title===dragged.parent.title);
-  //  locatedParent.children=[];
     
     this.setState({books:books});
     
